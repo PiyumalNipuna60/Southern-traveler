@@ -18,7 +18,7 @@ const data = [
         title:'GALLE',
         title2:'KOTUVA',
         description:'Galle Fort, in the Bay of Galle on the southwest coast of Sri Lanka, was built first in 1588 by the Portuguese, then extensively fortified by the Dutch during the 17th century from 1649 onwards.',
-        image:'assets/galle.jpg'
+        image:'assets/galle4.jpg'
     },
     {
         place:'Sri Lanka - Anuradhapura',
@@ -384,3 +384,69 @@ const data = [
   });
 
   start();
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Target values for each counter (in thousands)
+    const targetValues = [2.5, 1.8, 2.0, 1.5];
+    const durations = [2, 2, 2, 2]; // Duration in seconds for each counter
+    
+    // Function to format number with K+
+    function formatNumber(num) {
+        // If the number is a whole number, show without decimal
+        if (num % 1 === 0) {
+            return num + "K+";
+        } else {
+            return num.toFixed(1) + "K+";
+        }
+    }
+    
+    // Animate each counter
+    targetValues.forEach((value, index) => {
+        const counterId = `counter${index + 1}`;
+        const counterElement = document.getElementById(counterId);
+        
+        // Start from 0
+        let currentValue = 0;
+        const increment = value / (durations[index] * 100); 
+        
+        const updateCounter = () => {
+            currentValue += increment;
+            if (currentValue < value) {
+                counterElement.textContent = formatNumber(currentValue);
+                requestAnimationFrame(updateCounter);
+            } else {
+                counterElement.textContent = formatNumber(value);
+            }
+        };
+        
+        updateCounter();
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  const playButton = document.getElementById('playButton');
+  const videoModal = document.getElementById('videoModal');
+  const youtubeVideo = document.getElementById('youtubeVideo');
+  const closeModal = document.getElementById('closeModal');
+
+  playButton.addEventListener('click', function() {
+      const videoId = this.getAttribute('data-video-id');
+      youtubeVideo.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0`;
+      videoModal.classList.remove('hidden');
+  });
+
+  closeModal.addEventListener('click', function() {
+      youtubeVideo.src = '';
+      videoModal.classList.add('hidden');
+  });
+
+  // Close modal when clicking outside the video
+  videoModal.addEventListener('click', function(e) {
+      if (e.target === videoModal) {
+          youtubeVideo.src = '';
+          videoModal.classList.add('hidden');
+      }
+  });
+});

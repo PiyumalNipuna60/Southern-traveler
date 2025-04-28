@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Traveling site</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-------------------------AOS----------------------->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
@@ -103,9 +110,15 @@
         .details {
             z-index: 22;
             position: absolute;
-            top: 20%;
+            top: 25%;
             left: 60px;
+            width: 40%;
+            height: 70%;
             color: #ffffff;
+            background-color: rgba(48, 114, 212, 0.2);
+            padding: 20px; 
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
         }
 
         .details .place-box {
@@ -145,7 +158,6 @@
 
         .details>.desc {
             margin-top: 16px;
-            width: 35%;
             color: #ffffff;
         }
 
@@ -239,6 +251,12 @@
             display: grid;
             place-items: center;
             cursor: pointer;
+        }
+
+        .pagination>.arrow:hover {
+            width: 50px;
+            height: 50px;
+            background-color: var(--theam-black-700);
         }
 
         .pagination>.arrow:nth-child(2) {
@@ -532,7 +550,7 @@
         }
 
 
-        /* Popular Destinations */
+        /*----------------- Popular Destinations ---------------------*/
         .popular-destinations {
             background-color: var(--calculator-bg);
             transition: background-color 0.3s ease;
@@ -551,7 +569,7 @@
         }
 
 
-        /*packege section */
+        /*------------ packege section --------------------*/
         .package-card {
             border-radius: 0.5rem;
             overflow: hidden;
@@ -592,7 +610,7 @@
             padding: 4px 8px;
             border-radius: 4px;
             font-size: 0.8rem;
-            border-right: 1px solid var(--bg-black-100) ;
+            border-right: 1px solid var(--bg-black-100);
         }
 
         .package-detail svg {
@@ -617,17 +635,6 @@
             font-size: 0.9rem;
             margin-bottom: 1rem;
             line-height: 1.5;
-        }
-
-        .btn {
-            display: inline-block;
-            font-weight: 500;
-            text-align: center;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
         }
 
         .btn-primary {
@@ -672,12 +679,37 @@
         }
 
 
-        //=============================================================
+        /* ----------------- callback section ----------------- */
+        .callback-section {
+            width: 90vw;
+            margin-left: 10%;
+        }
+        #counterT{
+            border-right: 1px solid var(--text-black-900);
+            border-bottom: 1px solid var(--text-black-900);
+        }
+
+        #counterB{
+            border-right: 1px solid var(--text-black-900);
+        }
+
+        /* =============================================================*/
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {
+        @media (max-width: 850px) {
             .details {
-                left: 30px;
+                z-index: 22;
+                position: absolute;
+                top: 25%;
+                left: 60px;
+                width: 80%;
+                height: 40%;
+                color: #ffffff;
+                background-color: rgba(48, 114, 212, 0.2);
+                padding: 20px; 
+                border-radius: 10px;
+                backdrop-filter: blur(5px);
+                
             }
 
             .details .title-1,
@@ -698,23 +730,11 @@
                 width: 100%;
             }
 
+            
             .pagination {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .pagination .progress-sub-container {
-                width: 200px;
-                margin-top: 10px;
-                margin-left: 0;
-            }
-
-            .pagination .progress-sub-container .progress-sub-background {
-                width: 200px;
-            }
-
-            nav>div:last-child {
-                display: none;
+                position: absolute;
+                margin-left: 10%;
+                display: inline-flex;
             }
 
             .calculator-card {
@@ -731,25 +751,24 @@
                 align-self: flex-end;
             }
 
-            .popular-destinations {
-                padding: 3rem 0;
-            }
-
-            .destination-group {
-                gap: 1.5rem;
-            }
-
-            .destination-card .relative {
-                height: 56vw;
-                /* Adjust height for mobile */
-            }
 
             .packages-container {
                 grid-template-columns: repeat(1, 1fr);
             }
+            #videoContainer{
+                margin: 3% 10% 10% 1%;
+            }
+
+            #supportCard{
+                width: 42%;
+                margin-left: 20%;
+            }
         }
 
         @media (max-width: 480px) {
+            .details {
+                display: none; 
+            }
 
             .details .title-1,
             .details .title-2 {
@@ -763,6 +782,54 @@
 
             .details>.desc {
                 width: 90%;
+            }
+
+
+            .pagination {
+                position: absolute;
+                left: 0px !important;
+                bottom: 60px;
+                width: 80% !important;
+                display: inline-flex;
+            }
+    
+            .pagination>.arrow {
+                z-index: 60;
+                height: 50px;
+                border-radius: 999px;
+                display: grid;
+                place-items: center;
+                cursor: pointer;
+                background-color: var(--primary-color)
+            }
+    
+            .pagination>.arrow:nth-child(2) {
+                margin-left: 20px;
+                background-color: var(--primary-color)
+            }
+    
+            .pagination>.arrow svg {
+                width: 24px;
+                height: 24px;
+                stroke-width: 2;
+                color: var(--text-black-900);
+            }
+    
+            .pagination .progress-sub-container {
+              display: none;
+            }
+    
+            .pagination .slide-numbers {
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                color: var(--text-black-900);
+                top: 0;
+                right: 0;
+                display: grid;
+                place-items: center;
+                font-size: 32px;
+                font-weight: bold;
             }
 
             .calculator-header h2 {
@@ -784,6 +851,27 @@
             .destination-card h3 {
                 font-size: 1.5rem;
                 bottom: 1rem;
+            }
+
+            .destination-group{
+                display: flex;
+                flex-direction: column;
+                height: 137vh;
+                border: none;
+            }
+
+            .destination-group>div{
+                height: 20%;
+                margin-bottom: 2%;
+            }
+           
+            #localVideo{
+                height: 101%;
+            }
+
+            #supportCard{
+                width: 73vw !important;
+                margin-left: 0!important;
             }
         }
     </style>
@@ -1006,6 +1094,215 @@
         </div>
     </section>
 
+
+    <!----------- Popular packge Section ------------->
+    <section class="popular-packages py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <p class="section-title mb-2">EXPLORE GREAT PLACES</p>
+                <div class="section-divider"></div>
+                <h2 class="text-3xl font-bold mb-4">POPULAR PACKAGES</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Southern traveler brings you some of the most diverse and competitive Holiday Packages for
+                    travellers from
+                    across the globe to Sri Lanka. No matter the destination, our packages aim to satisfy any
+                    requirement and
+                    ensure the best travel experience.
+                </p>
+            </div>
+
+            <div class="packages-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-8">
+                <!-- Package 1 -->
+                <div class="package-card">
+                    <div class="relative">
+                        <img src="assets/pinnavala.jpg" alt="Sri Lanka Elephants" class="package-image">
+                        <div class="package-overlay">
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                5D/4N
+                            </div>
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.186-.013-.37-.039-.548M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.186.013-.37.039-.548M15 6a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 9a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                People
+                            </div>
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Sri Lanka
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="package-title">5 Days 4 Nights round tour</h3>
+                        <div class="package-rating">★★★★★</div>
+                        <p class="package-description">
+                            More free time to explore or relax in the island's most impressive cities of Pinnawala,
+                            Kandy and Nuwara Eliya.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="btn btn-outline">Read More</a>
+                            <a href="#" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="package-card">
+                    <div class="relative">
+                        <img src="assets/pinnavala.jpg" alt="Sri Lanka Elephants" class="package-image">
+                        <div class="package-overlay">
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                6D/5N
+                            </div>
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.186-.013-.37-.039-.548M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.186.013-.37.039-.548M15 6a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 9a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                People
+                            </div>
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Sri Lanka
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="package-title">6 Days 5 Nights round tour</h3>
+                        <div class="package-rating">★★★★★</div>
+                        <p class="package-description">
+                            More free time to explore or relax in the island's most impressive cities of Pinnawala,
+                            Kandy and Nuwara Eliya.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="btn btn-outline">Read More</a>
+                            <a href="#" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Package 3 -->
+                <div class="package-card">
+                    <div class="relative">
+                        <img src="assets/sigiriya2.jpg" alt="Sigiriya" class="package-image">
+                        <div class="package-overlay">
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                7D/6N
+                            </div>
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.186-.013-.37-.039-.548M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.186.013-.37.039-.548M15 6a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 9a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                People
+                            </div>
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Sri Lanka
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="package-title">7 Days 6 Nights round tour</h3>
+                        <div class="package-rating">★★★★★</div>
+                        <p class="package-description">
+                            More free time to explore or relax in the cities of Pinnawala, Sigiriya, Minneriya, Matale,
+                            Kandy and Nuwara Eliya.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="btn btn-outline">Read More</a>
+                            <a href="#" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 4 -->
+                <div class="package-card">
+                    <div class="relative">
+                        <img src="assets/yapahuva.jpg" alt="Ancient Ruins" class="package-image">
+                        <div class="package-overlay">
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                8D/7N
+                            </div>
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.186-.013-.37-.039-.548M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.186.013-.37.039-.548M15 6a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 9a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                People
+                            </div>
+                            <div class="package-detail">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Sri Lanka
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="package-title">8 Days 7 Nights round tour</h3>
+                        <div class="package-rating">★★★★★</div>
+                        <p class="package-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec ipsum elit lectus nec
+                            ultrices.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="btn btn-outline">Read More</a>
+                            <a href="#" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <button class="btn btn-p uppercase font-semibold" style="padding: 0.75rem 2rem;">
+                VIEW ALL PACKAGES</button>
+        </div>
+    </section>
+
     <!-- Popular Destinations Section -->
     <section class="popular-destinations py-16">
         <div class="calculator-container">
@@ -1020,67 +1317,49 @@
                 </p>
             </div>
 
-            <div class="destination-group grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-                <!-- Colombo Card -->
-                <div class="destination-card overflow-hidden rounded-lg shadow-lg">
-                    <div class="relative h-64 bg-cover bg-center"
-                        style="background-image: url('assets/colombo.jpg');">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-end">
-                            <div class="p-4 w-full">
-                                <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
-                                    COLOMBO</div>
-                                <div class="flex items-center text-yellow-400">
-                                    <span>★★★★★</span>
-                                </div>
-                            </div>
+            <div class="destination-group">
+                <div>
+                    <div class="p-4 w-full">
+                        <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
+                            GALLE</div>
+                        <div class="flex items-end text-white-700">
+                            <span>★★★★★</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Galle Card -->
-                <div class="destination-card overflow-hidden rounded-lg shadow-lg">
-                    <div class="relative h-64 bg-cover bg-center"
-                        style="background-image: url('assets/galle.jpg');">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-end">
-                            <div class="p-4 w-full">
-                                <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
-                                    GALLE</div>
-                                <div class="flex items-center text-yellow-400">
-                                    <span>★★★★★</span>
-                                </div>
-                            </div>
+                <div>
+                    <div class="p-4 w-full">
+                        <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
+                            ANURADHAPURA</div>
+                        <div class="flex items-end text-white-700">
+                            <span>★★★★★</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Sigiriya Card -->
-                <div class="destination-card overflow-hidden rounded-lg shadow-lg">
-                    <div class="relative h-64 bg-cover bg-center"
-                        style="background-image: url('assets/sigiriya.jpg');">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-end">
-                            <div class="p-4 w-full">
-                                <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
-                                    SIGIRIYA</div>
-                                <div class="flex items-center text-yellow-400">
-                                    <span>★★★★★</span>
-                                </div>
-                            </div>
+                <div>
+                    <div class="p-4 w-full">
+                        <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
+                            COLOMBO</div>
+                        <div class="flex items-end text-white-700">
+                            <span>★★★★★</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Kandy Card -->
-                <div class="destination-card overflow-hidden rounded-lg shadow-lg">
-                    <div class="relative h-64 bg-cover bg-center"
-                        style="background-image: url('assets/kandy.jpg');">
-                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-end">
-                            <div class="p-4 w-full">
-                                <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
-                                    KANDY</div>
-                                <div class="flex items-center text-yellow-400">
-                                    <span>★★★★★</span>
-                                </div>
-                            </div>
+                <div>
+                    <div class="p-4 w-full">
+                        <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
+                            ELLA</div>
+                        <div class="flex items-end text-white-700">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="p-4 w-full">
+                        <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
+                            KANDY</div>
+                        <div class="flex items-end text-white-700">
+                            <span>★★★★★</span>
                         </div>
                     </div>
                 </div>
@@ -1095,221 +1374,92 @@
     </section>
 
 
-    <!----------- Popular packge Section ------------->
-    <section class="popular-packages py-16">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <p class="section-title mb-2">EXPLORE GREAT PLACES</p>
-                <div class="section-divider"></div>
-                <h2 class="text-3xl font-bold mb-4">POPULAR PACKAGES</h2>
-                <p class="text-gray-600 max-w-3xl mx-auto">
-                    Southern traveler brings you some of the most diverse and competitive Holiday Packages for travellers from 
-                    across the globe to Sri Lanka. No matter the destination, our packages aim to satisfy any requirement and 
-                    ensure the best travel experience.
-                </p>
-            </div>
 
-            <div class="packages-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Package 1 -->
-                <div class="package-card">
-                    <div class="relative">
-                        <img src="assets/pinnavala.jpg" alt="Sri Lanka Elephants" class="package-image">
-                        <div class="package-overlay">
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                6D/5N
-                            </div>
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.186-.013-.37-.039-.548M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.186.013-.37.039-.548M15 6a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 9a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                People
-                            </div>
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Sri Lanka
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="package-title">6 Days 5 Nights round tour</h3>
-                        <div class="package-rating">★★★★★</div>
-                        <p class="package-description">
-                            More free time to explore or relax in the island's most impressive cities of Pinnawala, Kandy and Nuwara Eliya.
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <a href="#" class="btn btn-outline">Read More</a>
-                            <a href="#" class="btn btn-primary">Book Now</a>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Package 2 -->
-                <div class="package-card">
-                    <div class="relative">
-                        <img src="assets/sigiriya2.jpg" alt="Sigiriya" class="package-image">
-                        <div class="package-overlay">
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                7D/6N
-                            </div>
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.186-.013-.37-.039-.548M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.186.013-.37.039-.548M15 6a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 9a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                People
-                            </div>
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Sri Lanka
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="package-title">7 Days 6 Nights round tour</h3>
-                        <div class="package-rating">★★★★★</div>
-                        <p class="package-description">
-                            More free time to explore or relax in the cities of Pinnawala, Sigiriya, Minneriya, Matale, Kandy and Nuwara Eliya.
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <a href="#" class="btn btn-outline">Read More</a>
-                            <a href="#" class="btn btn-primary">Book Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Package 3 -->
-                <div class="package-card">
-                    <div class="relative">
-                        <img src="assets/yapahuva.jpg" alt="Ancient Ruins" class="package-image">
-                        <div class="package-overlay">
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                8D/7N
-                            </div>
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.186-.013-.37-.039-.548M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.186.013-.37.039-.548M15 6a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 9a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                                People
-                            </div>
-                            <div class="package-detail">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                Sri Lanka
-                            </div>
-                        </div>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="package-title">8 Days 7 Nights round tour</h3>
-                        <div class="package-rating">★★★★★</div>
-                        <p class="package-description">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce nec ipsum elit lectus nec ultrices.
-                        </p>
-                        <div class="flex justify-between items-center">
-                            <a href="#" class="btn btn-outline">Read More</a>
-                            <a href="#" class="btn btn-primary">Book Now</a>
-                        </div>
-                    </div>
+    <!-- Add this new section just before the existing "Callback Section" -->
+    <section class="callback-section py-16 bg-[#009bd6] text-white relative" style="margin-top: 3%;">
+        <div class="container mx-auto px-6 flex flex-wrap items-center">
+            <!-- Left: Image with Play Button -->
+            <div class="w-full lg:w-1/3 relative" id="videoContainer">
+                <img src="assets/ella.jpg" alt="Travel" class="w-full h-64 object-cover rounded-lg shadow-lg" />
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <video id="localVideo" class="w-full h-96" controls muted>
+                        <source src="assets/your-video-file.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
 
-            <div class="text-center mt-12">
-                <button class="btn btn-p uppercase font-semibold" style="padding: 0.75rem 2rem;">
-                    VIEW ALL PACKAGES</button>
+            <!-- Right: Content Area -->
+            <div class="w-full lg:w-2/3 pl-0 lg:pl-8 mt-6 lg:mt-0">
+                <!-- Title -->
+                <div class="mb-8">
+                    <p class="uppercase text-sm font-semibold tracking-widest border-l-4 pl-2 border-white">Callback For
+                        More</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold mt-2 leading-tight">GO TRAVEL. DISCOVER.
+                        <br />REMEMBER US!!
+                    </h2>
+                </div>
+
+                <!-- Counter Grid -->
+                <div class="grid grid-cols-2 border-t border-white border-opacity-40 pt-6">
+                    <div class="flex items-center h-16 pb-8 pl-10" id="counterT">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                        </svg>
+                        <div>
+                            <p class="text-2xl font-bold" id="counter1">0K+</p>
+                            <p class="text-sm">Satisfied Clients</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center h-16 pl-4 pb-8" id="counterT">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
+                        </svg>
+                        <div>
+                            <p class="text-2xl font-bold" id="counter2">0K+</p>
+                            <p class="text-sm">Satisfied Clients</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center h-16 pl-10 pt-4" id="counterB">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
+                        </svg>
+                        <div>
+                            <p class="text-2xl font-bold" id="counter3">0K+</p>
+                            <p class="text-sm">Satisfied Clients</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center h-16 pl-4 pt-4">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
+                        </svg>
+                        <div>
+                            <p class="text-2xl font-bold" id="counter4">0K+</p>
+                            <p class="text-sm">Satisfied Clients</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support Card -->
+                <div id="supportCard"
+                    class="absolute bottom-0  transform translate-y-1/2 bg-white shadow-xl rounded-md p-5 flex items-center space-x-4  w-[%]">
+                    <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                    <div>
+                        <p class="text-gray-600 text-sm">Our 24/7 Emergency Phone Services</p>
+                        <h3 class="text-red-600 text-lg font-bold">Call: +94 71 576 9900</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-   <!-- Add this new section just before the existing "Callback Section" -->
-<section class="callback-section py-16 bg-[#009bd6] text-white relative">
-    <div class="container mx-auto px-4 flex flex-wrap items-center">
-        <!-- Left: Image with Play Button -->
-        <div class="w-full lg:w-1/3 relative">
-            <img src="assets/ella.jpg" alt="Travel" class="w-full h-64 object-cover rounded-lg shadow-lg" />
-            <div class="absolute inset-0 flex items-center justify-center">
-                <a id="video-container" data-video-id="s4xgCFEsTEI?si=mPEVeTRaYMSIrG64" class="bg-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg">
-                    <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M6 4l10 6-10 6V4z" />
-                    </svg>
-                </a>
-            </div>
-        </div>
 
-        <!-- Right: Content Area -->
-        <div class="w-full lg:w-2/3 pl-0 lg:pl-8 mt-6 lg:mt-0">
-            <!-- Title -->
-            <div class="mb-8">
-                <p class="uppercase text-sm font-semibold tracking-widest border-l-4 pl-2 border-white">Callback For More</p>
-                <h2 class="text-3xl md:text-4xl font-extrabold mt-2 leading-tight">GO TRAVEL. DISCOVER. <br />REMEMBER US!!</h2>
-            </div>
-
-            <!-- Counter Grid -->
-            <div class="grid grid-cols-2 gap-6 border-t border-white border-opacity-40 pt-6">
-                <div class="flex items-center space-x-3">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
-                    </svg>
-                    <div>
-                        <p class="text-xl font-bold">2.5K+</p>
-                        <p class="text-sm">Satisfied Clients</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z"/>
-                    </svg>
-                    <div>
-                        <p class="text-xl font-bold">1.8K+</p>
-                        <p class="text-sm">Satisfied Clients</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z"/>
-                    </svg>
-                    <div>
-                        <p class="text-xl font-bold">2K+</p>
-                        <p class="text-sm">Satisfied Clients</p>
-                    </div>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z"/>
-                    </svg>
-                    <div>
-                        <p class="text-xl font-bold">1.5K+</p>
-                        <p class="text-sm">Satisfied Clients</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Support Card -->
-            <div class="absolute bottom-0 right-0 transform translate-y-1/2 bg-white shadow-xl rounded-md p-5 flex items-center space-x-4 w-[85%] lg:w-[70%]">
-                <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
-                </svg>
-                <div>
-                    <p class="text-gray-600 text-sm">Our 24/7 Emergency Phone Services</p>
-                    <h3 class="text-red-600 text-lg font-bold">Call: +94 71 576 9900</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-      
 
 
     <!-- Scripts -->
