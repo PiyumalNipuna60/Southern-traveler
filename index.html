@@ -7,12 +7,12 @@
     <title>Traveling site</title>
 
     <link rel="stylesheet" href="styles.css">
-
-    <!-------------------------AOS----------------------->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="/path/to/font-awesome/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-------------------------AOS----------------------->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
         :root {
             --bg-black-900: #f2f2fc;
@@ -116,7 +116,7 @@
             height: 70%;
             color: #ffffff;
             background-color: rgba(48, 114, 212, 0.2);
-            padding: 20px; 
+            padding: 20px;
             border-radius: 10px;
             backdrop-filter: blur(5px);
         }
@@ -573,7 +573,7 @@
         .package-card {
             border-radius: 0.5rem;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 10px rgba(37, 150, 190, 0.6);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             background-color: white;
             height: 100%;
@@ -684,14 +684,83 @@
             width: 90vw;
             margin-left: 10%;
         }
-        #counterT{
+
+        #counterT {
             border-right: 1px solid var(--text-black-900);
             border-bottom: 1px solid var(--text-black-900);
         }
 
-        #counterB{
+        #counterB {
             border-right: 1px solid var(--text-black-900);
         }
+
+
+        /*--------------- Add these styles to your existing CSS -------------*/
+        .adventure-activities {
+            transition: background-color 0.3s ease;
+        }
+
+        .activity-card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            box-shadow: 0px 4px 10px rgba(37, 150, 190, 0.6);
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            background-color: var(--primary-color);
+        }
+
+        .activity-card:hover .activity-title,
+        .activity-card:hover .activity-count {
+            color: var(--text-black-900);
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .activity-card:hover .activity-icon {
+            background-color: var(--text-black-900);
+        }
+
+        .activity-icon svg {
+            width: 30px;
+            height: 30px;
+            color: var(--text-black-900);
+        }
+
+        .activity-card:hover .activity-icon svg {
+            color: var(--primary-color);
+        }
+
+        .activity-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+
+        .activity-count {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            transition: color 0.3s ease;
+        }
+
 
         /* =============================================================*/
 
@@ -706,10 +775,10 @@
                 height: 40%;
                 color: #ffffff;
                 background-color: rgba(48, 114, 212, 0.2);
-                padding: 20px; 
+                padding: 20px;
                 border-radius: 10px;
                 backdrop-filter: blur(5px);
-                
+
             }
 
             .details .title-1,
@@ -730,7 +799,7 @@
                 width: 100%;
             }
 
-            
+
             .pagination {
                 position: absolute;
                 margin-left: 10%;
@@ -755,19 +824,42 @@
             .packages-container {
                 grid-template-columns: repeat(1, 1fr);
             }
-            #videoContainer{
+
+            #videoContainer {
                 margin: 3% 10% 10% 1%;
             }
 
-            #supportCard{
+            #supportCard {
                 width: 42%;
                 margin-left: 20%;
+            }
+
+            .activity-card {
+                padding: 1rem;
+            }
+
+            .activity-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .activity-icon svg {
+                width: 24px;
+                height: 24px;
+            }
+
+            .activity-title {
+                font-size: 1rem;
+            }
+
+            .activity-count {
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 480px) {
             .details {
-                display: none; 
+                display: none;
             }
 
             .details .title-1,
@@ -792,7 +884,7 @@
                 width: 80% !important;
                 display: inline-flex;
             }
-    
+
             .pagination>.arrow {
                 z-index: 60;
                 height: 50px;
@@ -802,23 +894,23 @@
                 cursor: pointer;
                 background-color: var(--primary-color)
             }
-    
+
             .pagination>.arrow:nth-child(2) {
                 margin-left: 20px;
                 background-color: var(--primary-color)
             }
-    
+
             .pagination>.arrow svg {
                 width: 24px;
                 height: 24px;
                 stroke-width: 2;
                 color: var(--text-black-900);
             }
-    
+
             .pagination .progress-sub-container {
-              display: none;
+                display: none;
             }
-    
+
             .pagination .slide-numbers {
                 width: 50px;
                 height: 50px;
@@ -853,25 +945,51 @@
                 bottom: 1rem;
             }
 
-            .destination-group{
+            .destination-group {
                 display: flex;
                 flex-direction: column;
                 height: 137vh;
                 border: none;
             }
 
-            .destination-group>div{
+            .destination-group>div {
                 height: 20%;
                 margin-bottom: 2%;
             }
-           
-            #localVideo{
+
+            #localVideo {
                 height: 101%;
             }
 
-            #supportCard{
+            #supportCard {
                 width: 73vw !important;
-                margin-left: 0!important;
+                margin-left: 0 !important;
+            }
+
+            .grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .activity-card {
+                padding: 0.75rem;
+            }
+
+            .activity-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .activity-icon svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .activity-title {
+                font-size: 0.9rem;
+            }
+
+            .activity-count {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -1099,21 +1217,27 @@
     <section class="popular-packages py-16">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
-                <p class="section-title mb-2">EXPLORE GREAT PLACES</p>
-                <div class="section-divider"></div>
-                <h2 class="text-3xl font-bold mb-4">POPULAR PACKAGES</h2>
-                <p class="text-gray-600 max-w-3xl mx-auto">
-                    Southern traveler brings you some of the most diverse and competitive Holiday Packages for
-                    travellers from
-                    across the globe to Sri Lanka. No matter the destination, our packages aim to satisfy any
-                    requirement and
-                    ensure the best travel experience.
-                </p>
+                <div data-aos="fade-up" data-aos-duration="3000">
+                    <p class="section-title mb-2">EXPLORE GREAT PLACES</p>
+                </div>
+                <div class="section-divider" data-aos="fade-up" data-aos-duration="3000"></div>
+                <div  data-aos="fade-up" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="text-3xl font-bold mb-4">POPULAR PACKAGES</h2>
+                </div>
+                <div  data-aos="fade-up" data-aos-duration="800"">
+                    <p class="max-w-3xl mx-auto">
+                        Southern traveler brings you some of the most diverse and competitive Holiday Packages for
+                        travellers from
+                        across the globe to Sri Lanka. No matter the destination, our packages aim to satisfy any
+                        requirement and
+                        ensure the best travel experience.
+                    </p>
+                </div>
             </div>
 
-            <div class="packages-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-8">
+            <div class="packages-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 ml-8">
                 <!-- Package 1 -->
-                <div class="package-card">
+                <div class="package-card"  data-aos="zoom-in-down" data-aos-duration="700">
                     <div class="relative">
                         <img src="assets/pinnavala.jpg" alt="Sri Lanka Elephants" class="package-image">
                         <div class="package-overlay">
@@ -1158,7 +1282,7 @@
                 </div>
 
                 <!-- Package 2 -->
-                <div class="package-card">
+                <div class="package-card"  data-aos="zoom-in-down" data-aos-duration="900">
                     <div class="relative">
                         <img src="assets/pinnavala.jpg" alt="Sri Lanka Elephants" class="package-image">
                         <div class="package-overlay">
@@ -1202,7 +1326,7 @@
                     </div>
                 </div>
                 <!-- Package 3 -->
-                <div class="package-card">
+                <div class="package-card"  data-aos="zoom-in-down" data-aos-duration="1100">
                     <div class="relative">
                         <img src="assets/sigiriya2.jpg" alt="Sigiriya" class="package-image">
                         <div class="package-overlay">
@@ -1247,7 +1371,7 @@
                 </div>
 
                 <!-- Package 4 -->
-                <div class="package-card">
+                <div class="package-card"  data-aos="zoom-in-down" data-aos-duration="1300">
                     <div class="relative">
                         <img src="assets/yapahuva.jpg" alt="Ancient Ruins" class="package-image">
                         <div class="package-overlay">
@@ -1297,29 +1421,36 @@
         </div>
         </div>
 
-        <div class="text-center mt-12">
+        <div class="text-center mt-12"  data-aos="fade-up" data-aos-duration="3000">
             <button class="btn btn-p uppercase font-semibold" style="padding: 0.75rem 2rem;">
                 VIEW ALL PACKAGES</button>
         </div>
     </section>
 
+
     <!-- Popular Destinations Section -->
     <section class="popular-destinations py-16">
         <div class="calculator-container">
-            <div class="h-1 w-24 mx-auto mb-2 underLine"></div>
+            <div class="h-1 w-24 mx-auto mb-2 underLine"  data-aos="fade-up" data-aos-duration="3000"></div>
             <div class="calculator-header">
-                <h2 class="text-3xl font-bold mb-2">POPULAR DESTINATION</h2>
-                <h3 class="text-xl font-semibold mb-4">TOP NOTCH DESTINATION</h3>
-                <p class="text-gray-600 max-w-3xl mx-auto">
-                    Sri Lanka is a country with a glorious and proud history, graced by monuments scattered across the
-                    country.
-                    The amazing ruins and monuments will surely add great value to your trip.
-                </p>
+                <div  data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="text-3xl font-bold mb-2">POPULAR DESTINATION</h2>
+                </div>
+                <div  data-aos="fade-up" data-aos-duration="3000">
+                    <h3 class="text-xl font-semibold mb-4">TOP NOTCH DESTINATION</h3>
+                </div>
+                <div data-aos="fade-up" data-aos-duration="800">
+                    <p class="text-gray-600 max-w-3xl mx-auto">
+                        Sri Lanka is a country with a glorious and proud history, graced by monuments scattered across the
+                        country.
+                        The amazing ruins and monuments will surely add great value to your trip.
+                    </p>
+                </div>
             </div>
 
             <div class="destination-group">
-                <div>
-                    <div class="p-4 w-full">
+                <div data-aos="zoom-in-down" data-aos-duration="500">
+                    <div class="p-4 w-full" data-aos="zoom-in" data-aos-duration="1100">
                         <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
                             GALLE</div>
                         <div class="flex items-end text-white-700">
@@ -1327,8 +1458,8 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="p-4 w-full">
+                <div data-aos="zoom-in-down" data-aos-duration="500">
+                    <div class="p-4 w-full" data-aos="zoom-in" data-aos-duration="1100">
                         <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
                             ANURADHAPURA</div>
                         <div class="flex items-end text-white-700">
@@ -1336,8 +1467,8 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="p-4 w-full">
+                <div data-aos="zoom-in-down" data-aos-duration="500">
+                    <div class="p-4 w-full" data-aos="zoom-in" data-aos-duration="1100">
                         <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
                             COLOMBO</div>
                         <div class="flex items-end text-white-700">
@@ -1345,8 +1476,8 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="p-4 w-full">
+                <div data-aos="zoom-in-down" data-aos-duration="500">
+                    <div class="p-4 w-full" data-aos="zoom-in" data-aos-duration="1100">
                         <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
                             ELLA</div>
                         <div class="flex items-end text-white-700">
@@ -1354,8 +1485,8 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <div class="p-4 w-full">
+                <div data-aos="zoom-in-down" data-aos-duration="500">
+                    <div class="p-4 w-full" data-aos="zoom-in" data-aos-duration="1100">
                         <div class="bg-blue-500 text-white text-center py-1 px-4 rounded-md inline-block mb-2">
                             KANDY</div>
                         <div class="flex items-end text-white-700">
@@ -1365,15 +1496,13 @@
                 </div>
             </div>
 
-            <div class="text-center mt-10">
+            <div class="text-center mt-10" data-aos="fade-up" data-aos-duration="3000">
                 <button class="btn btn-p uppercase font-semibold" style="padding: 0.75rem 2rem;">
                     MORE DESTINATION
                 </button>
             </div>
         </div>
     </section>
-
-
 
 
     <!-- Add this new section just before the existing "Callback Section" -->
@@ -1460,12 +1589,103 @@
     </section>
 
 
+    <!-- Add this section after the Popular Destinations section -->
+    <section class="adventure-activities py-16 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <div class="flex justify-center items-center mb-2">
+                    <div class="h-1 w-24 mx-5 underLine"></div>
+                    <div>TRAVEL BY ACTIVITY</div>
+                </div>
+                <h2 class="text-3xl font-bold mb-2">ADVENTURE & ACTIVITY</h2>
+                <p class="max-w-3xl mx-auto">
+                    Explore exciting adventures and activities across Sri Lanka's most beautiful destinations.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mx-12">
+                <!-- Adventure -->
+                <div class="activity-card group">
+                    <div class="activity-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="activity-title">Adventure</h3>
+                    <p class="activity-count">15 Destination</p>
+                </div>
+
+                <!-- Surf -->
+                <div class="activity-card group">
+                    <div class="activity-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                        </svg>
+                    </div>
+                    <h3 class="activity-title">Surf</h3>
+                    <p class="activity-count">12 Destination</p>
+                </div>
+
+                <!-- Whales -->
+                <div class="activity-card group">
+                    <div class="activity-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </div>
+                    <h3 class="activity-title">Whales</h3>
+                    <p class="activity-count">7 Destination</p>
+                </div>
+
+                <!-- Sea -->
+                <div class="activity-card group">
+                    <div class="activity-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                        </svg>
+                    </div>
+                    <h3 class="activity-title">Sea</h3>
+                    <p class="activity-count">15 Destination</p>
+                </div>
+
+                <!-- Wild Life -->
+                <div class="activity-card group">
+                    <div class="activity-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="activity-title">Wild Life</h3>
+                    <p class="activity-count">13 Destination</p>
+                </div>
+
+                <!-- Cultural -->
+                <div class="activity-card group">
+                    <div class="activity-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                        </svg>
+                    </div>
+                    <h3 class="activity-title">Cultural</h3>
+                    <p class="activity-count">25 Destination</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <!-- Scripts -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js'></script>
     <script src="js/homePageJs.js"></script>
-
+ <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
