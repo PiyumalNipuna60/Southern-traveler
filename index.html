@@ -180,7 +180,8 @@
             padding: 15px 36px;
             font-weight: 500;
             color: var(--bg-black-900);
-            background-color: var(--text-black-900);
+            background-color: rgba(48, 114, 212, 0.2);
+            backdrop-filter: blur(5px);
             border-bottom: 1px var(--text-black-900);
         }
 
@@ -212,6 +213,17 @@
 
         nav>div:last-child>.active {
             position: relative;
+        }
+
+        nav>div>div:hover:after {
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            position: absolute;
+            content: "";
+            height: 3px;
+            border-radius: 99px;
+            background-color: var(--theam-black-700);
         }
 
         nav>div:last-child>.active:after {
@@ -761,6 +773,129 @@
             transition: color 0.3s ease;
         }
 
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            z-index: 9999;
+            position: fixed;
+            right: 10%;
+            top: 1%;
+        }
+
+        .mobile-nav-toggle svg {
+            width: 30px;
+            height: 30px;
+            color: var(--bg-black-900);
+        }
+
+        /* Mobile Navigation Menu */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background-color: var(--text-black-900);
+            z-index: 9998;
+            transition: all 0.3s ease-in-out;
+            padding-top: 80px;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-nav.active {
+            right: 0;
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .mobile-nav li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--bg-black-900);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav a:hover {
+            background-color: var(--theam-black-700);
+            color: var(--text-black-900);
+        }
+
+        .mobile-nav .active {
+            color: var(--theam-black-700);
+            position: relative;
+        }
+
+        .mobile-nav .active:after {
+            content: "";
+            position: absolute;
+            left: 20px;
+            bottom: 10px;
+            width: 30px;
+            height: 3px;
+            background-color: var(--theam-black-700);
+            border-radius: 99px;
+        }
+
+        /* Overlay for mobile menu */
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9997;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 850px) {
+
+            /* Hide desktop nav on mobile */
+            nav>div:last-child {
+                display: none;
+            }
+
+            /* Show mobile toggle button */
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            /* Adjust logo size */
+            nav>div:first-child {
+                font-size: 18px;
+            }
+
+            /* Adjust nav padding */
+            nav {
+                padding: 10px 20px;
+            }
+            
+        }
+
 
         /* =============================================================*/
 
@@ -991,12 +1126,55 @@
             .activity-count {
                 font-size: 0.75rem;
             }
+
+            /* Further mobile adjustments */
+            .mobile-nav {
+                width: 85%;
+            }
+
+            .mobile-nav a {
+                padding: 12px 20px;
+                font-size: 13px;
+            }
+
+            .theme-switcher{
+                margin-top: 14%;
+                right: 2%;
+            }
+
+            .mobile-nav-toggle{
+                right: 3%;
+            }
+
         }
     </style>
 </head>
 
 <body>
     <div class="indicator"></div>
+
+    <!-- Mobile Navigation Toggle Button -->
+    <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="#home" class="active">HOME</a></li>
+            <li><a href="#calculator">CALCULATOR</a></li>
+            <li><a href="#packages">PACKAGES</a></li>
+            <li><a href="#destination">DESTINATION</a></li>
+            <li><a href="#remember">REMEMBER US</a></li>
+            <li><a href="#activity">ACTIVITY</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+        </ul>
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
 
     <nav>
         <div>
@@ -1009,14 +1187,14 @@
             </div>
             <div data-aos="fade-right" data-aos-duration="3000">Southern traveler</div>
         </div>
-        <div>
-            <div class="active" data-aos="fade-left" data-aos-duration="3000">Home</div>
+        <div class="nav-links">
+            <div class="active" data-aos="fade-left" data-aos-duration="3000">HOME</div>
             <div data-aos="fade-left" data-aos-duration="2900">CALCULATOR</div>
-            <div data-aos="fade-left" data-aos-duration="2800">DESTINATION</div>
-            <div data-aos="fade-left" data-aos-duration="2600">PACKAGES</div>
-            <div data-aos="fade-left" data-aos-duration="2400">Offers</div>
-            <div data-aos="fade-left" data-aos-duration="2200">Contact</div>
-            <div class="svg-container">
+            <div data-aos="fade-left" data-aos-duration="2800">PACKAGES</div>
+            <div data-aos="fade-left" data-aos-duration="2600">DESTINATION</div>
+            <div data-aos="fade-left" data-aos-duration="2200">ACTIVITY</div>
+            <div data-aos="fade-left" data-aos-duration="2000">Contact</div>
+            <div class="svg-container second-svg-container">
                 <svg xmlns="" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -1030,7 +1208,7 @@
 
 
     <!------------------ home section ----------------->
-    <section class="home-section">
+    <section class="home-section" id="home">
         <div id="demo"></div>
 
         <div class="details" id="details-even">
@@ -1050,7 +1228,7 @@
         </div>
 
         <div class="details" id="details-odd">
-            <div class="place-box" >
+            <div class="place-box">
                 <div class="text">Sri Lanka - Dabulla</div>
             </div>
             <div class="title-box-1">
@@ -1098,7 +1276,7 @@
 
 
     <!--------------------- Calculator Section -------------------->
-    <section class="calculator-section">
+    <section class="calculator-section" id="calculator">
         <div class="calculator-container">
             <div class="h-1 w-24 mx-auto mb-2 underLine" data-aos="fade-right" data-aos-easing="ease-in-sine"></div>
             <div class="calculator-header" data-aos="fade-up" data-aos-duration="2000">
@@ -1126,7 +1304,7 @@
                     </select>
                 </div>
 
-                <div style="text-align: center;" class="form-group"  data-aos="zoom-in" data-aos-duration="3000">
+                <div style="text-align: center;" class="form-group" data-aos="zoom-in" data-aos-duration="3000">
                     <button class="btn btn-p btn-search">
                         Search
                     </button>
@@ -1214,7 +1392,7 @@
 
 
     <!----------- Popular packge Section ------------->
-    <section class="popular-packages py-16">
+    <section class="popular-packages py-16" id="packages">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <div data-aos="fade-up" data-aos-duration="3000">
@@ -1429,7 +1607,7 @@
 
 
     <!-- Popular Destinations Section -->
-    <section class="popular-destinations py-16">
+    <section class="popular-destinations py-16" id="destination">
         <div class="calculator-container">
             <div class="h-1 w-24 mx-auto mb-2 underLine" data-aos="fade-up" data-aos-duration="3000"></div>
             <div class="calculator-header">
@@ -1507,14 +1685,15 @@
 
 
     <!-- Add this new section just before the existing "Callback Section" -->
-    <section class="callback-section py-16 bg-[#009bd6] text-white relative" style="margin-top: 3%;">
+    <section class="remember-us-section callback-section py-16 bg-[#009bd6] text-white relative" style="margin-top: 3%;"
+        id="remember">
         <div class="container mx-auto px-6 flex flex-wrap items-center">
             <!-- Left: Image with Play Button -->
             <div class="w-full lg:w-1/3 relative" id="videoContainer" data-aos="zoom-in" data-aos-duration="1000">
                 <img src="assets/ella.jpg" alt="Travel" class="w-full h-64 object-cover rounded-lg shadow-lg" />
                 <div class="absolute inset-0 flex items-center justify-center">
-                    <video id="localVideo" class="w-full h-96" controls muted>
-                        <source src="assets/your-video-file.mp4" type="video/mp4">
+                    <video id="localVideo" class="w-full h-96" controls muted autoplay playsinline>
+                        <source src="assets/viddeo/travelVideo.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
@@ -1528,7 +1707,7 @@
                             For
                             More</p>
                     </div>
-                    <div  data-aos="fade-up" data-aos-duration="1000">
+                    <div data-aos="fade-up" data-aos-duration="1000">
                         <h2 class="text-3xl md:text-4xl font-extrabold mt-2 leading-tight">GO TRAVEL. DISCOVER.
                             <br />REMEMBER US!!
                         </h2>
@@ -1540,7 +1719,7 @@
                 <!-- Counter Grid -->
                 <div class="grid grid-cols-2 border-t border-white border-opacity-40 pt-6">
                     <div class="flex items-center h-16 pb-8 pl-10" id="counterT">
-                        <div  data-aos="flip-right" data-aos-duration="3000">
+                        <div data-aos="flip-right" data-aos-duration="3000">
                             <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
                                 <path
                                     d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
@@ -1552,7 +1731,7 @@
                         </div>
                     </div>
                     <div class="flex items-center h-16 pl-4 pb-8" id="counterT">
-                        <div  data-aos="flip-right" data-aos-duration="3000">
+                        <div data-aos="flip-right" data-aos-duration="3000">
                             <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
                                 <path
                                     d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
@@ -1564,7 +1743,7 @@
                         </div>
                     </div>
                     <div class="flex items-center h-16 pl-10 pt-4" id="counterB">
-                        <div  data-aos="flip-right" data-aos-duration="3000">
+                        <div data-aos="flip-right" data-aos-duration="3000">
                             <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
                                 <path
                                     d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
@@ -1576,7 +1755,7 @@
                         </div>
                     </div>
                     <div class="flex items-center h-16 pl-4 pt-4">
-                        <div  data-aos="flip-right" data-aos-duration="3000">
+                        <div data-aos="flip-right" data-aos-duration="3000">
                             <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20">
                                 <path
                                     d="M10 2a6 6 0 00-6 6c0 4 6 10 6 10s6-6 6-10a6 6 0 00-6-6zm0 8a2 2 0 110-4 2 2 0 010 4z" />
@@ -1607,18 +1786,19 @@
 
 
     <!-- Add this section after the Popular Destinations section -->
-    <section class="adventure-activities py-16 mt-12">
+    <section class="activity-section adventure-activities py-16 mt-12" id="activity">
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <div class="flex justify-center items-center mb-2">
-                    <div class="h-1 w-24 mx-5 underLine"  data-aos="fade-right" data-aos-offset="300"  data-aos-duration="500" data-aos-easing="ease-in-sine"></div>
+                    <div class="h-1 w-24 mx-5 underLine" data-aos="fade-right" data-aos-offset="300"
+                        data-aos-duration="500" data-aos-easing="ease-in-sine"></div>
                     <div data-aos="fade-up" data-aos-duration="1500">TRAVEL BY ACTIVITY</div>
                 </div>
-                <div  data-aos="fade-up" data-aos-duration="1000">
+                <div data-aos="fade-up" data-aos-duration="1000">
                     <h2 class="text-3xl font-bold mb-2">ADVENTURE & ACTIVITY</h2>
-                <p class="max-w-3xl mx-auto">
-                    Explore exciting adventures and activities across Sri Lanka's most beautiful destinations.
-                </p>
+                    <p class="max-w-3xl mx-auto">
+                        Explore exciting adventures and activities across Sri Lanka's most beautiful destinations.
+                    </p>
                 </div>
             </div>
 
@@ -1636,7 +1816,7 @@
                 </div>
 
                 <!-- Surf -->
-                <div class="activity-card group"  data-aos="fade-right" data-aos-duration="800">
+                <div class="activity-card group" data-aos="fade-right" data-aos-duration="800">
                     <div class="activity-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1648,7 +1828,7 @@
                 </div>
 
                 <!-- Whales -->
-                <div class="activity-card group"  data-aos="fade-right" data-aos-duration="1000">
+                <div class="activity-card group" data-aos="fade-right" data-aos-duration="1000">
                     <div class="activity-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1696,6 +1876,87 @@
             </div>
         </div>
     </section>
+
+  <!-- Add this section at the end of your HTML, before the closing </body> tag -->
+<!-- <section class="contact-section">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4">Contact us</h2>
+            <p class="text-xl text-gray-600">We'd love to hear from you!</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h3 class="text-2xl font-semibold mb-6">Get in Touch</h3>
+            <p class="text-gray-600 mb-8">
+                We're always here to help you with your healthy food needs. Whether you have a question, feedback, or just want to say hello, our team is here to assist you. Please use the form below to get in touch with us, or find us on social media for the latest updates and promotions.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="md:w-1/2">
+                    <div class="mb-6">
+                        <div class="flex items-start mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 mt-1 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium">44 Street NYC, USA 10001</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 mt-1 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium">+1 100 104 40001</p>
+                                <p class="text-gray-600">contact@foodie.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links flex space-x-4">
+                        <a href="#" class="bg-gray-200 p-2 rounded-full hover:bg-yellow-500 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="bg-gray-200 p-2 rounded-full hover:bg-yellow-500 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="bg-gray-200 p-2 rounded-full hover:bg-yellow-500 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="bg-gray-200 p-2 rounded-full hover:bg-yellow-500 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2">
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                        </div>
+                        <div>
+                            <textarea placeholder="Write your Message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600 transition duration-300 font-medium">
+                            SUBMIT
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section> -->
 
 
     <!-- Scripts -->
