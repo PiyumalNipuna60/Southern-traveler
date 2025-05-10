@@ -507,7 +507,7 @@ document.addEventListener("DOMContentLoaded", function () {
           break;
         case "contact":
           // Change this to your contact section if you have one
-          targetSection = document.querySelector("");
+          targetSection = document.querySelector(".contact-section");
           break;
         default:
           return;
@@ -553,7 +553,7 @@ document.addEventListener("DOMContentLoaded", function () {
         (linkText === "packages" && current.includes("packages")) ||
         (linkText === "destination" && current.includes("destination")) ||
         (linkText === "activity" && current.includes("activity")) ||
-        (linkText === "contact" && current.includes("callback"))
+        (linkText === "contact" && current.includes("contact"))
       ) {
         link.classList.add("active");
       }
